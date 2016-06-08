@@ -2,3 +2,4 @@
 *.jar
 libs/
 bin/
+test-output/
