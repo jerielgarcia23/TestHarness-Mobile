@@ -26,6 +26,7 @@ import ErrorObjects.ErrorWithTwoButtons;
 import ErrorObjects.SnackBar;
 import PageObjects.ErrorActivity;
 import PageObjects.LandingPage;
+import Utilities.AndroidLauncher;
 import Utilities.AndroidPackageManipulator;
 import Utilities.AppiumServer;
 import Utilities.DBReader;
@@ -51,6 +52,14 @@ public class SampleTest {
 		
 		AppiumServer server = new AppiumServer();
 		server.start();
+		
+		
+		///////////////////////////////////////
+		
+		AndroidLauncher launcher = new AndroidLauncher();
+		launcher.launchEmulator("Test");
+		
+		///////////////////////////////////////
 		
 		AndroidPackageManipulator apm = new AndroidPackageManipulator("C:/sampleAPK/app-debug-Fedir.apk");
         //apm.launchAppiumServer(localService);
@@ -82,27 +91,27 @@ public class SampleTest {
 	  Assert.assertNotNull(driver.getSettings());
   }
   
-  //@Test
+  @Test
   public void sampleUIManipulation()
   {
 	 driver.findElement(By.id("home_screen_activity_example_request_button")).click();
   }
   
-  //@Test 
+  @Test 
   public void sampleDBConnectionTest() throws Exception 
   {
 	  DBReader dbReader = new DBReader("172.19.3.42:1433", "DBS_Savvis", "DBreader", "Cb7Qz[6F50R[%jG2");
 	  dbReader.query("select top 10 * from MediaQAs");
   }
   
-  //@Test
+  @Test
   public void sampleADBUninstallThenInstall() throws Exception
   {
 	  AndroidPackageManipulator apm = new AndroidPackageManipulator("C:\\sampleAPK\\app-debug.apk");
 	  apm.cleanBuild();
   }
   
-  //@Test
+  @Test
   public void sampleLogging() throws Exception
   {
 	  Logger logger = new Logger();
@@ -117,7 +126,7 @@ public class SampleTest {
 	  checker.getLatency(functRef, util,"home_screen_activity_example_request_button");
   }
   
-  //@Test
+  @Test
   public void handleErrorMessages() throws Exception
   {
 	  driver.findElement(By.id(LandingPage.showErrorActivity)).click();
@@ -145,6 +154,7 @@ public class SampleTest {
 	  //snackbar
 	  driver.findElement(By.id(ErrorActivity.snackbar)).click();
 	  SnackBar.confirmSnackBar(driver);
+	  driver.navigate().back();
   }
   
   @Test
@@ -161,11 +171,8 @@ public class SampleTest {
 	  List<AndroidElement> targetElements = driver.findElements(By.className("LinearLayout"));
 	  
 	  ScrollingElement scroller = new ScrollingElement();
-	  
-	  System.out.println("Before swipe");
-	  //scroller.scrollLeft(driver, sampleElement);// targetElements.get(8));
-	  scroller.scrollLeftUntilElementIsVisible(driver, sampleElement, "Bean");
-	  System.out.println("After swipe");
+	  scroller.scrollLeftUntilElementIsVisible(driver, sampleElement, "Bugged");
+	  driver.navigate().back();
   }
   
   //@Test
@@ -176,11 +183,8 @@ public class SampleTest {
 	  // wait.waitForPageLoad();
 	  String tempID = "pagination_example_activity_grid";
 	  MobileElement sampleElement = driver.findElement(By.id(tempID));
-	  System.out.println("Before swipe");
-	  
 	  driver.swipe(sampleElement.getCenter().getX(), sampleElement.getCenter().getY(), sampleElement.getCenter().getX()  , sampleElement.getCenter().getY()  + 100, 500);
-
-	  System.out.println("After swipe");
+	  driver.navigate().back();
   }
   
   

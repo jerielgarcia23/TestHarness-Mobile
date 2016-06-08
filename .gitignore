@@ -1,0 +1,5 @@
+*.class
+*.jar
+libs/
+bin/
+test-output/

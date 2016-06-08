@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/gson-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/java-client-3.4.1-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/java-client-3.4.1-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/selenium-server-standalone-2.53.0.jar" sourcepath="C:/Java Client Source"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/selenium-2.53.0/selenium-java-2.53.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/selenium-2.53.0/selenium-java-2.53.0-srcs.jar"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/java-client-3.4.1.jar" sourcepath="libs/java-client-3.4.1-sources.jar"/>
-	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/sqljdbc4-2.0.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/gson-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/java-client-3.4.1-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/java-client-3.4.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/selenium-server-standalone-2.53.0.jar" sourcepath="C:/Java Client Source"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/java-client-3.4.1.jar" sourcepath="libs/java-client-3.4.1-sources.jar"/>
+	<classpathentry exported="true" kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mob/libs/sqljdbc4-2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/selenium-java-2.53.0-srcs.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/selenium-java-2.53.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-lang3-3.4/commons-lang3-3.4-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-lang3-3.4/commons-lang3-3.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1-test-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1-tests.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
