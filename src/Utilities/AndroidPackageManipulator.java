@@ -12,10 +12,11 @@ public class AndroidPackageManipulator
 	private Process process;
 	private String packagePath; 
 	
-	public AndroidPackageManipulator(String packagePath)
+	public AndroidPackageManipulator(String packagePath) throws Exception
 	{
 		this.packagePath = packagePath;
 		runtime = Runtime.getRuntime();
+		this.cleanBuild();
 	}
 	
 	public void uninstallPackage() throws Exception

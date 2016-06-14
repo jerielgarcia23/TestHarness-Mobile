@@ -164,4 +164,69 @@ public class ScrollingElement
 			}
 		}
 	}
+	
+	public static void scrollToElement(AppiumDriver driver, WebElement element)
+	{
+		if (!element.isDisplayed())
+		{
+			driver.scrollTo(element.getText());
+		}
+	}
+	
+	public static void swipeUpToElement(AppiumDriver driver, WebElement element)
+	{
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		driver.swipe(width, height, width, height + 200, 500);
+		
+		while (!element.isDisplayed())
+		{
+			driver.swipe(width, height, width, height  + 200, 500);
+		}
+		
+	}
+	
+	public static void swipeDownToElement(AppiumDriver driver, WebElement element)
+	{
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		driver.swipe(width, height, width, height - 200, 500);
+		
+		while (!element.isDisplayed())
+		{
+			driver.swipe(width, height, width, height - 200, 500);
+		}
+	}
+	
+	public static void swipeRightToElement(AppiumDriver driver, WebElement element)
+	{
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		driver.swipe(width, width, width + 200, height, 500);
+		
+		while (!element.isDisplayed())
+		{
+			driver.swipe(width, height, width + 200, height, 500);
+		}
+	}
+	
+	public static void swipeLeftToElement(AppiumDriver driver, WebElement element)
+	{
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		driver.swipe(width, height, width - 200, height, 500);
+		
+		while (!element.isDisplayed())
+		{
+			driver.swipe(width, height, width - 200, height, 500);
+		}
+	}
 }

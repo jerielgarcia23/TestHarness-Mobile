@@ -20,7 +20,7 @@ public class AndroidLauncher {
 		try 
 		{
 			process = new ProcessBuilder(aCommand).start();
-			process.waitFor(20, TimeUnit.SECONDS);
+			process.waitFor(40, TimeUnit.SECONDS);
 			System.out.println("Emulator launched successfully!");
 		}	
 		catch (Exception e) 
