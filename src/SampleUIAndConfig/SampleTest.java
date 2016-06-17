@@ -1,5 +1,8 @@
 package SampleUIAndConfig;
 
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.AssertJUnit;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -7,9 +10,11 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.jetty.html.Element;
@@ -19,6 +24,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import Utilities.ReadFileData;
 import CommonControls.DeviceController;
 import CommonControls.ScrollingElement;
 import ErrorObjects.Alert;
@@ -36,49 +42,34 @@ import PageObjects.PDPExamples;
 import Utilities.AndroidLauncher;
 import Utilities.AndroidPackageManipulator;
 import Utilities.AppiumServer;
+import Utilities.AppiumSetup;
 import Utilities.DBReader;
 import Utilities.LatencyChecker;
 import Utilities.Logger;
 import Utilities.WaitHandler;
 
+
+
 public class SampleTest {
 	
+	AppiumSetup appSetup = new AppiumSetup();
 	AppiumDriver<AndroidElement> driver;
 	WaitHandler wait;
 	AppiumDriverLocalService localService;
-	private String appPath = "C:/sampleAPK/app-Dev-debug.apk";
-	private String deviceName = "Android_Tablet"; //Test Android_Tablet
-	
+	DesiredCapabilities capabilities = new DesiredCapabilities();
+	private String deviceName;
 	// Required Capabilities
+	
+	
 	@BeforeClass
 	public void Setup() throws Exception
 	{
-	
-		///////////////////////////////////////
-			
-		AppiumServer server = new AppiumServer();
-		server.start();
-		
-		///////////////////////////////////////
-		
-		AndroidLauncher launcher = new AndroidLauncher();
-		launcher.launchEmulator(deviceName);
-		
-		///////////////////////////////////////
-		
-		AndroidPackageManipulator apm = new AndroidPackageManipulator(appPath);
-        //apm.launchAppiumServer(localService);
-        
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        //capabilities.setCapability("deviceName","Android");
-        capabilities.setCapability("platformVersion", "4.4.2");
-        capabilities.setCapability("app", appPath);
-        capabilities.setCapability("deviceName", deviceName); // avd -> android virtual device, Nexus_5X_API_23	
-        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-        wait = new WaitHandler(driver);
-        
-        driver.findElement(By.id(LoginPage.performLogin)).click();
+
+        //setting up the appium server and installing the apk on the device
+        driver = appSetup.AppiumSetupD(driver, wait, capabilities);
+
 	}
+	
 	
 	
 	
@@ -86,7 +77,7 @@ public class SampleTest {
   public void sample() throws Exception 
   {
 	  System.out.println("Driver settings : " + driver.getSettings());
-	  Assert.assertNotNull(driver.getSettings());
+	  AssertJUnit.assertNotNull(driver.getSettings());
   }
   
   //@Test
@@ -274,7 +265,7 @@ public class SampleTest {
 	  
 	  // Validation of errors
 	  if (errors.size() > 0)
-		  Assert.fail(errors.toString());
+		  AssertJUnit.fail(errors.toString());
 	  
   }
 
@@ -324,9 +315,6 @@ public class SampleTest {
 	  if (!element.getText().equals(title))
 		  errors.add("Title does not match expected results");
 	  
-	  System.out.println();
-	  System.out.println("1");
-	  System.out.println();
 	  
 	  
 	  element = driver.findElement(By.id(MoviePDP.director));
@@ -403,7 +391,7 @@ public class SampleTest {
 		  driver.navigate().back();
 	  
 	  if (errors.size() > 0)
-		  Assert.fail(errors.toString());
+		  AssertJUnit.fail(errors.toString());
   }
 }
  
