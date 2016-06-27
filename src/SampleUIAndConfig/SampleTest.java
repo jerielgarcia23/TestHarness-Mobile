@@ -1,8 +1,4 @@
 package SampleUIAndConfig;
-
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-import org.testng.AssertJUnit;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -10,22 +6,22 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.jetty.html.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import Utilities.ReadFileData;
 import CommonControls.DeviceController;
+import CommonControls.Login;
 import CommonControls.ScrollingElement;
 import ErrorObjects.Alert;
 import ErrorObjects.ErrorWithFourButtons;
@@ -42,42 +38,61 @@ import PageObjects.PDPExamples;
 import Utilities.AndroidLauncher;
 import Utilities.AndroidPackageManipulator;
 import Utilities.AppiumServer;
-import Utilities.AppiumSetup;
 import Utilities.DBReader;
 import Utilities.LatencyChecker;
 import Utilities.Logger;
 import Utilities.WaitHandler;
 
-
-
 public class SampleTest {
 	
-	AppiumSetup appSetup = new AppiumSetup();
-	AppiumDriver<AndroidElement> driver;
+	AppiumDriver<MobileElement> driver;
+	AndroidLauncher launcher;
 	WaitHandler wait;
 	AppiumDriverLocalService localService;
-	DesiredCapabilities capabilities = new DesiredCapabilities();
-	private String deviceName;
-	// Required Capabilities
+	private String appPath = "C:/sampleAPK/app-Stage-debug.apk";
+	private String deviceName = "Android_Tablet"; //Test Android_Tablet
 	
 	
 	@BeforeClass
 	public void Setup() throws Exception
 	{
 
-        //setting up the appium server and installing the apk on the device
-        driver = appSetup.AppiumSetupD(driver, wait, capabilities);
-
+		///////////////////////////////////////
+			
+		//AppiumServer server = new AppiumServer();
+		//server.start();
+		
+		///////////////////////////////////////
+		
+		//launcher = new AndroidLauncher();
+		//launcher.launchEmulator(deviceName);
+		
+		///////////////////////////////////////
+		
+		//AndroidPackageManipulator apm = new AndroidPackageManipulator(appPath);
+        
+        
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        //capabilities.setCapability("deviceName","Android");
+        capabilities.setCapability("platformVersion", "4.4.2");
+        capabilities.setCapability("app", appPath);
+        capabilities.setCapability("deviceName", deviceName); // avd -> android virtual device, Nexus_5X_API_23	
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+        wait = new WaitHandler(driver);
+        
+        Login.login(driver, "test");
 	}
 	
-	
-	
+	@AfterClass(alwaysRun=true)
+	public void tearDown(){
+		driver.quit();
+	}
 	
   //@Test
   public void sample() throws Exception 
   {
 	  System.out.println("Driver settings : " + driver.getSettings());
-	  AssertJUnit.assertNotNull(driver.getSettings());
+	  Assert.assertNotNull(driver.getSettings());
   }
   
   //@Test
@@ -149,7 +164,7 @@ public class SampleTest {
 	  
 	  String tempID = "pagination_example_activity_list";
 	  MobileElement sampleElement = driver.findElement(By.id(tempID));
-	  List<AndroidElement> targetElements = driver.findElements(By.className("LinearLayout"));
+	  List<MobileElement> targetElements = driver.findElements(By.className("LinearLayout"));
 	  
 	  ScrollingElement scroller = new ScrollingElement();
 	  scroller.scrollLeftUntilElementIsVisible(driver, sampleElement, "Bugged");
@@ -265,7 +280,7 @@ public class SampleTest {
 	  
 	  // Validation of errors
 	  if (errors.size() > 0)
-		  AssertJUnit.fail(errors.toString());
+		  Assert.fail(errors.toString());
 	  
   }
 
@@ -314,84 +329,47 @@ public class SampleTest {
 	  element = driver.findElement(By.id(MoviePDP.title));
 	  if (!element.getText().equals(title))
 		  errors.add("Title does not match expected results");
-	  
-	  
-	  
+	    
 	  element = driver.findElement(By.id(MoviePDP.director));
 	  if (!element.getText().equals(director))
 		  errors.add("Director does not match expected results");
-	  
-	  System.out.println();
-	  System.out.println("2");
-	  System.out.println();
-	  
+	  	  
 	  element = driver.findElement(By.id(MoviePDP.genre));
 	  if (!element.getText().equals(genre))
 		  errors.add("Genre does not match expected results");
-	  
-	  System.out.println();
-	  System.out.println("3");
-	  System.out.println();
-	  
+	  	  
 	  element = driver.findElement(By.id(MoviePDP.year));
 	  if (!element.getText().equals(year))
 		  errors.add("Year does not match expected results");
-	  
-	  System.out.println();
-	  System.out.println("4");
-	  System.out.println();
 	  
 	  element = driver.findElement(By.id(MoviePDP.maturityRating));
 	  if (!element.getText().equals(maturityRating))
 		  errors.add("Maturity Rating does not match expected results");
 	  
-	  System.out.println();
-	  System.out.println("5");
-	  System.out.println();
-	  
 	  element = driver.findElement(By.id(MoviePDP.starRating));
 	  if (!element.getText().equals(starRating))
 		  errors.add("Star Rating does not match expected results");
-	  
-	  System.out.println();
-	  System.out.println("6");
-	  System.out.println();
 	  
 	  element = driver.findElement(By.id(MoviePDP.duration));
 	  if (!element.getText().equals(duration))
 		  errors.add("Duration does not match expected results");
 	  
-	  System.out.println();
-	  System.out.println("7");
-	  System.out.println();
-	  
-	 // driver.scrollToExact("As the war between");
 	  element = driver.findElement(By.id(MoviePDP.description));
 	  ScrollingElement.swipeDownToElement(driver, element);
 	  if (!element.getText().equals(description))
 		  errors.add("Description does not match expected results");
-	  
-	  System.out.println();
-	  System.out.println("8");
-	  System.out.println(" width : " + driver.manage().window().getSize().getWidth() + "  Height : " + + driver.manage().window().getSize().getHeight());
-	  System.out.println("9 - " + driver.findElement(By.id(MoviePDP.actors)).getLocation());
-	  System.out.println();
-	  
+	  	  
 	  element = driver.findElement(By.id(MoviePDP.actors));
 	  ScrollingElement.swipeDownToElement(driver, element);
 	  if (!element.getText().equals(actors))
 		  errors.add("Actors do not match expected results");
-	  
-	  System.out.println();
-	  System.out.println("9");
-	  System.out.println();
-	  
+	  	  
 	// setting the default test location to be the landing page.
 		  driver.navigate().back();
 		  driver.navigate().back();
 	  
 	  if (errors.size() > 0)
-		  AssertJUnit.fail(errors.toString());
+		  Assert.fail(errors.toString());
   }
 }
  
