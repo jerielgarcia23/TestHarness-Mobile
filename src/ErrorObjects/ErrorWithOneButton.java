@@ -9,6 +9,7 @@ public class ErrorWithOneButton extends ErrorWithNoButtons
 	
 	public static void handleError(WebDriver driver)
 	{
+		//Alert alert = (Alert) driver.switchTo().alert();
 		driver.findElement(By.id(buttonYes)).click();
 	}
 }

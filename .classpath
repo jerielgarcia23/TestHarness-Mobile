@@ -18,5 +18,6 @@
 	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1-test-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1-tests.jar"/>
 	<classpathentry exported="true" kind="lib" path="libs/commons-validator-1.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/felix.livshits/workspace/mob/TestHarness-Mobile/Mobile/libs/android-src.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

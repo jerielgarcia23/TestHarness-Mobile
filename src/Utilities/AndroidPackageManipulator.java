@@ -38,4 +38,9 @@ public class AndroidPackageManipulator
 		uninstallPackage();
 		installPackage();
 	}
+	
+	private void disableAirplaneMode() throws Exception
+	{
+		
+	}
 }
