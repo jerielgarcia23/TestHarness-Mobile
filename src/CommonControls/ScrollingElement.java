@@ -12,6 +12,23 @@ import org.openqa.selenium.interactions.Actions;
 
 public class ScrollingElement 
 {
+	private static String topFrame = "action_bar";
+	private static String bottomFrame = "navigationBarBackground";
+	private static int spacer = 50;
+	
+	public static boolean isElementOnScreen(AppiumDriver driver, MobileElement element)
+	{
+		boolean withinFrame = true;
+		WebElement top = driver.findElement(By.id(topFrame));
+		WebElement bottom = driver.findElement(By.id(bottomFrame));
+		
+		if ((bottom.getLocation().y - spacer) < element.getLocation().y || (top.getLocation().y + top.getSize().getHeight() + spacer) > element.getLocation().y )
+		{
+			withinFrame = false;
+		}
+
+		return withinFrame;
+	}
 	
 	public void scrollLeft(AppiumDriver driver, MobileElement scrollableElement)
 	{
@@ -165,7 +182,7 @@ public class ScrollingElement
 		}
 	}
 	
-	public static void scrollToElement(AppiumDriver driver, WebElement element)
+	public static void scrollToElement(AppiumDriver driver, MobileElement element)
 	{
 		if (!element.isDisplayed())
 		{
@@ -173,7 +190,7 @@ public class ScrollingElement
 		}
 	}
 	
-	public static void swipeUpToElement(AppiumDriver driver, WebElement element)
+	public static void swipeUpToElement(AppiumDriver driver, MobileElement element)
 	{
 		int width, height;
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
@@ -188,7 +205,7 @@ public class ScrollingElement
 		
 	}
 	
-	public static void swipeDownToElement(AppiumDriver driver, WebElement element)
+	public static void swipeDownToElement(AppiumDriver driver, MobileElement element)
 	{
 		int width, height;
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
@@ -202,7 +219,7 @@ public class ScrollingElement
 		}
 	}
 	
-	public static void swipeRightToElement(AppiumDriver driver, WebElement element)
+	public static void swipeRightToElement(AppiumDriver driver, MobileElement element)
 	{
 		int width, height;
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
@@ -216,7 +233,7 @@ public class ScrollingElement
 		}
 	}
 	
-	public static void swipeLeftToElement(AppiumDriver driver, WebElement element)
+	public static void swipeLeftToElement(AppiumDriver driver, MobileElement element)
 	{
 		int width, height;
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
