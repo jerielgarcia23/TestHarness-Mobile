@@ -54,14 +54,14 @@ public class NetworkConnectivityTesting
 	AppiumDriverLocalService localService;
 	private String appPath = "C:/sampleAPK/app-Stage-debug.apk";
 	private String deviceName = "Android_Tablet"; //Test Android_Tablet
-	
+	DesiredCapabilities capabilities;
 	
 	@BeforeClass
 	public void Setup() throws Exception
 	{
 		
 		AndroidPackageManipulator apm = new AndroidPackageManipulator(appPath);
-        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities = new DesiredCapabilities();
         //capabilities.setCapability("deviceName","Android");
         capabilities.setCapability("platformVersion", "4.4.2");
         capabilities.setCapability("app", appPath);
@@ -71,20 +71,31 @@ public class NetworkConnectivityTesting
         //DeviceController.enableCommsData(driver);
         wait = new WaitHandler(driver);
 
-        Login.login(driver, "test");
+        
 	}
 	
 	@AfterClass
 	public void TearDown() throws Exception
 	{
-		DeviceController.enableCommsData(driver);
+		DeviceController.enableDefaultSettings(driver);
 	}
 	
 	@Test
 	public void airplaneProducesConnectivityError()
 	{
+		try
+		{
+			driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		}
+		catch (Exception e){}
+		
+		try
+		{
+			Login.login(driver, "test");
+		}
+		catch (Exception e){}
 		DeviceController.enableCommsAirplaneMode(driver);
-		//DeviceController.allFalse(driver);
+		
 		driver.findElement(By.id(LandingPage.pdpExamples)).click();
 		
 		try
@@ -96,13 +107,38 @@ public class NetworkConnectivityTesting
 		{
 			Assert.fail("Error message not displayed");
 		}
+		driver.navigate().back();
 	}
 	
-	//@Test
-	public void lackOfConnectivityProducesError()
+	@Test
+	public void lackOfConnectivityProducesErrorOnLogin()
 	{
+		try
+		{
+			driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
+		}
+		catch (Exception e){}
 		
+		try
+		{
+			Login.login(driver, "test");
+		}
+		catch (Exception e){}
+		
+		driver.findElement(By.id(LandingPage.pdpExamples)).click();
+
+		try
+		{
+			driver.findElement(By.id(PDPExamples.moviePDPUnderworld)).click();
+			driver.findElement(By.id("fragment_shomi_notification_dialog_button1")).click();
+		}
+		catch (Exception e)
+		{
+			Assert.fail("Error message not displayed");
+		}
+		driver.navigate().back();
 	}
+		
 	
 	
 }
