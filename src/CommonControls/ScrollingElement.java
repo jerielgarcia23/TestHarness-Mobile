@@ -13,9 +13,9 @@ import org.openqa.selenium.interactions.Actions;
 public class ScrollingElement 
 {
 	
-	public void scrollLeft(AppiumDriver driver, MobileElement scrollableElement)
+	public static void scrollLeft(AppiumDriver driver, MobileElement scrollableElement)
 	{
-		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX() - 200, scrollableElement.getCenter().getY(), 500);
+		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX() - 500, scrollableElement.getCenter().getY(), 500);
 	}
 	
 	public void scrollRight(AppiumDriver driver, MobileElement scrollableElement)

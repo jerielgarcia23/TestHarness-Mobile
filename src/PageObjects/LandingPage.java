@@ -7,4 +7,5 @@ public class LandingPage
 	public static String pdpExamples = "home_screen_activity_pdp_selection";
 	public static String showErrorActivity = "home_screen_activity_alert_dialog_button";
 	public static String exampleRequest = "home_screen_activity_example_request_button";
+	public static String carouselExample = "home_screen_activity_carousel_test_button";
 }

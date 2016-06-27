@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AndroidLauncher {
 
-	private static String sdkPath = "C:/Users/felix.livshits/AppData/Local/Android/Sdk/"; // or for Mac "/Applications/adt-bundle-mac-x86_64-20140702/sdk/";// or for windows D:/Android/adt-bundle-windows-x86_64-20140702/sdk/
+	private static String sdkPath = "C:/Users/jeriel.garcia/AppData/Local/Android/sdk2/"; // or for Mac "/Applications/adt-bundle-mac-x86_64-20140702/sdk/";// or for windows D:/Android/adt-bundle-windows-x86_64-20140702/sdk/
 	private static String emulatorPath = sdkPath + "tools" + File.separator + "emulator";
 
 	Process process;
