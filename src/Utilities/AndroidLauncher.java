@@ -1,6 +1,8 @@
 package Utilities;
 
 import java.io.File;
+import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.concurrent.TimeUnit;
 
 public class AndroidLauncher {
@@ -22,6 +24,7 @@ public class AndroidLauncher {
 			process = new ProcessBuilder(aCommand).start();
 			process.waitFor(40, TimeUnit.SECONDS);
 			System.out.println("Emulator launched successfully!");
+			
 		}	
 		catch (Exception e) 
 		{
@@ -29,8 +32,8 @@ public class AndroidLauncher {
 		}
 	}
 	
-	public void killEmulator()
+	public void killEmulator() throws IOException
 	{
-		process.destroy();
+		Runtime.getRuntime().exec("taskkill /F /IM qemu-system-i386.exe");
 	}
 }
