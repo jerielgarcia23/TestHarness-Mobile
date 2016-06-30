@@ -22,6 +22,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import CommonControls.DeviceController;
@@ -45,8 +46,9 @@ import Utilities.AppiumServer;
 import Utilities.DBReader;
 import Utilities.LatencyChecker;
 import Utilities.Logger;
+import Utilities.TestReporter;
 import Utilities.WaitHandler;
-
+@Listeners(TestReporter.class)
 public class NetworkConnectivityTesting 
 {
 	AppiumDriver<MobileElement> driver;
@@ -84,7 +86,7 @@ public class NetworkConnectivityTesting
 		DeviceController.enableDefaultSettings(driver);
 	}
 	
-	//@Test
+	@Test
 	public void airplaneProducesConnectivityError()
 	{
 		try
@@ -114,7 +116,7 @@ public class NetworkConnectivityTesting
 		driver.navigate().back();
 	}
 	
-	//@Test
+	@Test
 	public void lackOfConnectivityProducesError()
 	{
 		try

@@ -1,5 +1,6 @@
 package SampleUIAndConfig;
 import io.appium.java_client.AppiumDriver;
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -18,6 +19,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import CommonControls.DeviceController;
@@ -41,8 +43,10 @@ import Utilities.AppiumServer;
 import Utilities.DBReader;
 import Utilities.LatencyChecker;
 import Utilities.Logger;
+import Utilities.TestReporter;
 import Utilities.WaitHandler;
 
+@Listeners(TestReporter.class)
 public class SampleTest {
 	
 	AppiumDriver<MobileElement> driver;
@@ -55,23 +59,7 @@ public class SampleTest {
 	
 	@BeforeClass
 	public void Setup() throws Exception
-	{
-
-		///////////////////////////////////////
-			
-		//AppiumServer server = new AppiumServer();
-		//server.start();
-		
-		///////////////////////////////////////
-		
-		//launcher = new AndroidLauncher();
-		//launcher.launchEmulator(deviceName);
-		
-		///////////////////////////////////////
-		
-		//AndroidPackageManipulator apm = new AndroidPackageManipulator(appPath);
-        
-        
+	{       
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //capabilities.setCapability("deviceName","Android");
         capabilities.setCapability("platformVersion", "4.4.2");
@@ -88,7 +76,7 @@ public class SampleTest {
 		driver.quit();
 	}
 	
-  //@Test
+  @Test
   public void sample() throws Exception 
   {
 	  System.out.println("Driver settings : " + driver.getSettings());
