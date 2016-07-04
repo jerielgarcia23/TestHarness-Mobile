@@ -359,5 +359,81 @@ public class SampleTest {
 	  if (errors.size() > 0)
 		  Assert.fail(errors.toString());
   }
+  
+  @Test 
+   public void validateCarousel() {
+       List<String> errors = new ArrayList<String>();
+       MobileElement element = null;
+       
+                 driver.findElement(By.id(LandingPage.carouselExample)).click(); 
+    
+   
+   //validate image              
+                  element = driver.findElement(By.id(CarouselPage.carouselImage));
+   
+     if (element==null)
+         errors.add("Carousel Image is missing");
+         
+     
+     // slight change
+   //validate title  
+     element = driver.findElement(By.id(CarouselPage.carouselTitle));
+   
+   if (element ==null)
+   errors.add("Carousel Title is missing");
+   
+   System.out.println(element.getText());
+   
+   //validate description
+   element = driver.findElement(By.id(CarouselPage.carouselDescription));
+   
+   if (element==null)
+   errors.add("Carousel Description is missing");
+   
+   
+   
+   
+   //swipe the carousel left
+   
+   
+   
+   element = driver.findElement(By.id(CarouselPage.carouselImage));
+   
+   String title1 = (driver.findElement(By.id(CarouselPage.carouselTitle))).getText();
+   
+   ScrollingElement.scrollLeft(driver, element);
+   
+   String title2 = (driver.findElement(By.id(CarouselPage.carouselTitle))).getText();
+   
+   if (title1 == title2)
+       //errors.add("Carousel did not move");
+   System.out.println("hey you!!1");
+   
+   //validate the text of the title changes
+   //validate the description changes
+   
+   
+   
+   ScrollingElement.scrollLeft(driver, element);
+   System.out.println("hey you!!2");
+   ScrollingElement.scrollLeft(driver, element);
+   System.out.println("hey you!!3");
+   ScrollingElement.scrollLeft(driver, element);
+   System.out.println("hey you!!4");
+   ScrollingElement.scrollLeft(driver, element);
+   
+   
+   System.out.println("hey you!!5");
+    //swipe the carousel right
+   //element = driver.findElement(By.id(CarouselPage.carouselImage));
+   //ScrollingElement.swipeRightToElement(driver, element);
+   
+   
+   //tap the image
+   
+   
+   
+   }
+
 }
  
