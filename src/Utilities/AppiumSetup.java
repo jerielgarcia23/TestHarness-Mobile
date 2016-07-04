@@ -69,16 +69,7 @@ public class AppiumSetup {
 	
 	}
 
-
-
-	
-	
-	
-	
 	public AppiumDriver<AndroidElement> AppiumSetupD(AppiumDriver<AndroidElement> driver, WaitHandler wait, DesiredCapabilities capabilities) throws Exception {
-		// TODO Auto-generated constructor stub
-		
-		
 		//Starting Appium Server
 		AppiumServer server = new AppiumServer();
 		server.start();
@@ -101,8 +92,8 @@ public class AppiumSetup {
 		//Performing the login click       
 	    driver.findElement(By.id(LoginPage.performLogin)).click();
 	        
-	      //Return the driver to be used in SampleTest	
-	        	return driver;
+	    //Return the driver to be used in SampleTest	
+	    return driver;
 	        	
 	        	
 	}

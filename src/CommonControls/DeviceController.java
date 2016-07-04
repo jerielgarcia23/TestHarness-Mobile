@@ -30,7 +30,7 @@ public class DeviceController {
 	
 	public static void enableCommsData(AppiumDriver driver) // only for android
 	{
-		((AndroidDriver)driver).setNetworkConnection(new NetworkConnectionSetting(false, false, true)); // The params are (boolean airplaneMode, boolean wifi, boolean data)
+		((AndroidDriver)driver).setNetworkConnection(new NetworkConnectionSetting(false, true, true)); // The params are (boolean airplaneMode, boolean wifi, boolean data)
 	}
 	
 	public static void enableCommsAirplaneMode(AppiumDriver driver) // only for android
