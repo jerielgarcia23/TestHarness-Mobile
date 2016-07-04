@@ -414,7 +414,7 @@ public void validateCarousel() {
 	  errors.add("Carousel Image is missing");
 	  
   
-  
+  // slight change
 //validate title  
   element = driver.findElement(By.id(CarouselPage.carouselTitle));
 
@@ -429,6 +429,9 @@ element = driver.findElement(By.id(CarouselPage.carouselDescription));
 if (element==null)
 errors.add("Carousel Description is missing");
 
+
+
+
 //swipe the carousel left
 
 
@@ -436,7 +439,9 @@ errors.add("Carousel Description is missing");
 element = driver.findElement(By.id(CarouselPage.carouselImage));
 
 String title1 = (driver.findElement(By.id(CarouselPage.carouselTitle))).getText();
+
 ScrollingElement.scrollLeft(driver, element);
+
 String title2 = (driver.findElement(By.id(CarouselPage.carouselTitle))).getText();
 
 if (title1 == title2)
