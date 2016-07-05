@@ -16,6 +16,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import CommonControls.CarouselController;
@@ -24,8 +25,9 @@ import CommonControls.ScrollingElement;
 import PageObjects.CarouselPage;
 import PageObjects.LandingPage;
 import Utilities.AndroidLauncher;
+import Utilities.TestReporter;
 import Utilities.WaitHandler;
-
+@Listeners(TestReporter.class)
 public class CarouselTesting {
 
 	AppiumDriver<MobileElement> driver;
@@ -88,6 +90,7 @@ public class CarouselTesting {
 			for (String error : errors) {
 				errorString += error + " ";
 			}
+			System.out.println(" Fail - Contents");
 			Assert.fail(errorString);
 		}
 	}
@@ -132,6 +135,7 @@ public class CarouselTesting {
 			for (String error : errors) {
 				errorString += error + " ";
 			}
+			System.out.println(" Fail - Adjust Left");
 			Assert.fail(errorString);
 		}
 	}
@@ -150,8 +154,9 @@ public class CarouselTesting {
 
 		String titleText = driver
 				.findElement(By.id(CarouselPage.carouselTitle)).getText();
+		CarouselController.waitUntilIndexIsSelected(driver,2);
 		int beforeIndex = CarouselController.getCurrentIndex(driver);
-		
+
 		CarouselController.carouselSwipeLeft(driver, element);
 		
 		int afterIndex = CarouselController.getCurrentIndex(driver);
@@ -173,6 +178,7 @@ public class CarouselTesting {
 			for (String error : errors) {
 				errorString += error + " ";
 			}
+			System.out.println(" Fail - Adjust Right");
 			Assert.fail(errorString);
 		}
 	}
@@ -212,6 +218,7 @@ public class CarouselTesting {
 			for (String error : errors) {
 				errorString += error + " ";
 			}
+			System.out.println(" Fail - touch and hold");
 			Assert.fail(errorString);
 		}
 	}
@@ -227,9 +234,7 @@ public class CarouselTesting {
 		// validate elements have loaded
 		
 		element = driver.findElement(By.id(CarouselPage.carouselImage));
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
+
 		CarouselController.waitUntilIndexIsSelected(driver,2);
 		CarouselController.goToFirstIndex(driver, element);
 		int size = CarouselController.getIndexMaxSize(driver) - 1;
@@ -237,8 +242,8 @@ public class CarouselTesting {
 		CarouselController.carouselSwipeRightUntilIndexed(driver, size-1);
 		int current = CarouselController.getCurrentIndex(driver);
 		
-		
-		if (size != current)
+		System.out.println("SIZE : " + size);
+		if (size > current + 3)
 			errors.add("Swiping left from the first position does not bring you to the last index");
 		
 		driver.navigate().back();
@@ -248,6 +253,7 @@ public class CarouselTesting {
 			for (String error : errors) {
 				errorString += error + " ";
 			}
+			System.out.println(" Fail - loopToEnd");
 			Assert.fail(errorString);
 		}
 	}
@@ -284,6 +290,8 @@ public class CarouselTesting {
 			for (String error : errors) {
 				errorString += error + " ";
 			}
+			
+			System.out.println(" Fail - loopToStart");
 			Assert.fail(errorString);
 		}
 	}
