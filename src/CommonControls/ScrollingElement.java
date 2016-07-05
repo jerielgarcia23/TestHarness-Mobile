@@ -32,15 +32,31 @@ public class ScrollingElement
 	
 	public static void scrollLeft(AppiumDriver driver, MobileElement scrollableElement)
 	{
-		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX() - 500, scrollableElement.getCenter().getY(), 500);
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		int swipeDistance = width - 1;
+		int offSet = 0;
+		swipeDistance += offSet;
+		
+		driver.swipe(scrollableElement.getCenter().getX() + offSet, scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX() - swipeDistance, scrollableElement.getCenter().getY(), 500);
 	}
 	
-	public void scrollRight(AppiumDriver driver, MobileElement scrollableElement)
+	public static void scrollRight(AppiumDriver driver, MobileElement scrollableElement)
 	{
-		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX() + 200, scrollableElement.getCenter().getY(), 500);
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		int swipeDistance = width - 1;
+		int offSet = 0;
+		swipeDistance += offSet;
+		
+		driver.swipe(scrollableElement.getCenter().getX() - offSet, scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX() + swipeDistance, scrollableElement.getCenter().getY(), 500);
 	}
 
-	public void scrollLeftUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
+	public static void scrollLeftUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
 	{
 		WebElement element = null; // it's loaded, but isn't being displayed
 		boolean gate = false;	
@@ -73,7 +89,7 @@ public class ScrollingElement
 		}
 	}
 	
-	public void scrollRightUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
+	public static void scrollRightUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
 	{
 		WebElement element = null; // it's loaded, but isn't being displayed
 		boolean gate = false;	
@@ -106,17 +122,37 @@ public class ScrollingElement
 		}
 	}
 	
-	public void scrollDown(AppiumDriver driver, MobileElement scrollableElement)
+	public static void scrollDown(AppiumDriver driver, MobileElement scrollableElement)
 	{
-		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY() + 200, 500);
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		int swipeDistance = height;
+		int offSet = 0;
+		swipeDistance += offSet;
+		
+		
+		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY() - offSet, scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY() + swipeDistance, 500);
 	}
 	
-	public void scrollUp(AppiumDriver driver, MobileElement scrollableElement)
+	public static void scrollUp(AppiumDriver driver, MobileElement scrollableElement)
 	{
-		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY(), scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY() - 200, 500);
+		int width, height;
+		height = driver.manage().window().getSize().getHeight() / 2; // center height
+		width = driver.manage().window().getSize().getWidth() / 2; // center width
+		
+		int swipeDistance = height;
+		int offSet = 0;
+		swipeDistance += offSet;
+		
+		
+		
+		
+		driver.swipe(scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY() + offSet, scrollableElement.getCenter().getX(), scrollableElement.getCenter().getY() - swipeDistance, 500);
 	}
 	
-	public void scrollDownUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
+	public static void scrollDownUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
 	{
 		WebElement element = null; // it's loaded, but isn't being displayed
 		boolean gate = false;	
@@ -149,7 +185,7 @@ public class ScrollingElement
 		}
 	}
 	
-	public void scrollUpUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
+	public static void scrollUpUntilElementIsVisible(AppiumDriver driver, MobileElement scrollableElement, String targetText)
 	{
 		WebElement element = null; // it's loaded, but isn't being displayed
 		boolean gate = false;	
@@ -196,11 +232,16 @@ public class ScrollingElement
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
 		width = driver.manage().window().getSize().getWidth() / 2; // center width
 		
-		driver.swipe(width, height, width, height + 200, 500);
+		int swipeDistance = height;
+		int offSet = 0;
+		swipeDistance += offSet;
+		
+		
+		driver.swipe(width, height - offSet, width, height + swipeDistance, 500);
 		
 		while (!element.isDisplayed())
 		{
-			driver.swipe(width, height, width, height  + 200, 500);
+			driver.swipe(width, height, width, height  + swipeDistance, 500);
 		}
 		
 	}
@@ -211,11 +252,15 @@ public class ScrollingElement
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
 		width = driver.manage().window().getSize().getWidth() / 2; // center width
 		
-		driver.swipe(width, height, width, height - 200, 500);
+		int swipeDistance = height;
+		int offSet = 0;
+		swipeDistance += offSet;
+		
+		driver.swipe(width, height + offSet, width, height - swipeDistance, 500);
 		
 		while (!element.isDisplayed())
 		{
-			driver.swipe(width, height, width, height - 200, 500);
+			driver.swipe(width, height, width, height - swipeDistance, 500);
 		}
 	}
 	
@@ -225,25 +270,33 @@ public class ScrollingElement
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
 		width = driver.manage().window().getSize().getWidth() / 2; // center width
 		
-		driver.swipe(width, width, width + 200, height, 500);
+		int swipeDistance = width - 1;
+		int offSet = 0;
+		
+		driver.swipe(width - offSet, height, width + swipeDistance, height, 500);
 		
 		while (!element.isDisplayed())
 		{
-			driver.swipe(width, height, width + 200, height, 500);
+			driver.swipe(width, height, width + swipeDistance, height, 500);
 		}
 	}
 	
 	public static void swipeLeftToElement(AppiumDriver driver, MobileElement element)
 	{
 		int width, height;
+		
 		height = driver.manage().window().getSize().getHeight() / 2; // center height
 		width = driver.manage().window().getSize().getWidth() / 2; // center width
 		
-		driver.swipe(width, height, width - 200, height, 500);
+		int swipeDistance = width - 1;
+		int offSet = 0;
+		swipeDistance += offSet;
+		
+		driver.swipe(width + offSet, height, width - swipeDistance, height, 500);
 		
 		while (!element.isDisplayed())
 		{
-			driver.swipe(width, height, width - 200, height, 500);
+			driver.swipe(width, height, width - swipeDistance, height, 500);
 		}
 	}
 }

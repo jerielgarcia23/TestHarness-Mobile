@@ -50,8 +50,9 @@ public class TestRunner {
 			
 			TestListenerAdapter tla = new TestListenerAdapter();
 			TestNG testng = new TestNG();
-			testng.setTestClasses(new Class[] { NetworkConnectivityTesting.class });
-			testng.setTestClasses(new Class[] { SampleTest.class });
+			//testng.setTestClasses(new Class[] { NetworkConnectivityTesting.class });
+			//testng.setTestClasses(new Class[] { SampleTest.class });
+			testng.setTestClasses(new Class[] { CarouselTesting.class });
 			
 			testng.addListener(tla);
 			testng.run();
@@ -60,7 +61,7 @@ public class TestRunner {
 		}
 		
 		System.out.println(testReporter.generateReport());
-		AutomatedEmailNotification.sendEmail("felix.livshits@shomi.com, subject, body","Test Results",testReporter.generateReport());
+		//AutomatedEmailNotification.sendEmail("felix.livshits@shomi.com, subject, body","Test Results",testReporter.generateReport());
 	}
 
 }

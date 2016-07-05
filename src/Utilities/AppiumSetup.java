@@ -1,13 +1,10 @@
 package Utilities;
-
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
-
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -16,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.jetty.html.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -24,15 +20,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-
-
-
-
-
-
 import Utilities.ReadFileData;
-
 import CommonControls.DeviceController;
 import CommonControls.ScrollingElement;
 import ErrorObjects.Alert;
@@ -55,18 +43,11 @@ import Utilities.LatencyChecker;
 import Utilities.Logger;
 import Utilities.WaitHandler;
 import static org.junit.Assert.*;
-
-
-
-
 public class AppiumSetup {
 
 	private static Properties properties = ReadFileData.readDataFile();
-
-	
 	public AppiumSetup()  {
 		// TODO Auto-generated constructor stub
-	
 	}
 
 	public AppiumDriver<AndroidElement> AppiumSetupD(AppiumDriver<AndroidElement> driver, WaitHandler wait, DesiredCapabilities capabilities) throws Exception {
@@ -74,13 +55,10 @@ public class AppiumSetup {
 		AppiumServer server = new AppiumServer();
 		server.start();
 		
-	
 		//Launching emulator
 		AndroidLauncher launcher = new AndroidLauncher();
 		launcher.launchEmulator(properties.getProperty("deviceName"));
-		
-		
-		
+
 		//Configuring device with apk
 		capabilities.setCapability("platformVersion", properties.getProperty("AndroidVersion")) ;
 	    capabilities.setCapability("app", properties.getProperty("appPath"));
@@ -93,19 +71,9 @@ public class AppiumSetup {
 	    driver.findElement(By.id(LoginPage.performLogin)).click();
 	        
 	    //Return the driver to be used in SampleTest	
-	    return driver;
-	        	
-	        	
+	    return driver;	        	
 	}
 
-
-
-
-	
-	
-
-	
-	
 	@Test
 	public void test() {
 		fail("Not yet implemented");
